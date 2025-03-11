@@ -7,8 +7,11 @@ import {
   SignedOut,
   UserButton,
 } from '@clerk/nextjs'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Geist, Geist_Mono, Inter } from 'next/font/google'
 import './globals.css'
+import { QueryProvider } from '@/providers/query-provider'
+import { SheetProvider } from '@/providers/sheet-provider'
+import { Toaster } from 'sonner'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -19,6 +22,8 @@ const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
   subsets: ['latin'],
 })
+
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: 'Clerk Next.js Quickstart',
@@ -33,17 +38,12 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-          <header className="flex justify-end items-center p-4 gap-4 h-16">
-            <SignedOut>
-              <SignInButton />
-              <SignUpButton />
-            </SignedOut>
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
-          </header>
-          {children}
+        <body className={inter.className}>
+          <QueryProvider>
+            <SheetProvider/>
+            <Toaster/>
+            {children}
+          </QueryProvider>
         </body>
       </html>
     </ClerkProvider>
