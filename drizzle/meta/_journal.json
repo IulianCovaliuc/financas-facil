@@ -15,6 +15,20 @@
       "when": 1741445749675,
       "tag": "0001_loose_the_watchers",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1742168703447,
+      "tag": "0002_absurd_stark_industries",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1742493593313,
+      "tag": "0003_breezy_the_captain",
+      "breakpoints": true
     }
   ]
 }
