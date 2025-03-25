@@ -113,6 +113,8 @@ export const TransactionForm = ({
           )}
         />
         <FormField
+          // TODO: Check why Categories aren't being seen in the transaction page.
+
           name="categoryId"
           control={form.control}
           render={({ field }) => (
