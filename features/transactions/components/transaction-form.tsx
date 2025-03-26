@@ -187,7 +187,7 @@ export const TransactionForm = ({
           )}
         />
         <Button className="w-full" disabled={disabled}>
-          {id ? "Save Changes" : "Create account"}
+          {id ? "Save Changes" : "Create transaction"}
         </Button>
         {!!id && (
           <Button
@@ -198,7 +198,7 @@ export const TransactionForm = ({
             variant="outline"
           >
             <Trash className="size-4 mr-2" />
-            Delete account
+            Delete transaction
           </Button>
         )}
       </form>
