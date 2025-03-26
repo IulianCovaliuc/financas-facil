@@ -38,7 +38,7 @@ type ApiFormValues = z.input<typeof apiSchema>;
 type Props = {
   id?: string;
   defaultValues?: FormValues;
-  onSubmit: (values: FormValues) => void;
+  onSubmit: (values: ApiFormValues) => void;
   onDelete?: () => void;
   disabled?: boolean;
   accountOptions: { label: string; value: string }[];
