@@ -18,6 +18,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
+import { convertAmountToMiliunits } from "@/lib/utils";
 
 const formSchema = z.object({
   date: z.coerce.date(),
@@ -64,8 +65,13 @@ export const TransactionForm = ({
   });
 
   const handleSubmit = (values: FormValues) => {
-    console.log({ values });
-    //onSubmit(values);
+    const amount = parseFloat(values.amount);
+    const amountInMiliunits = convertAmountToMiliunits(amount);
+
+    onSubmit({
+      ...values,
+      amount: amountInMiliunits,
+    });
   };
 
   const handleDelete = () => {
@@ -113,8 +119,6 @@ export const TransactionForm = ({
           )}
         />
         <FormField
-          // TODO: Check why Categories aren't being seen in the transaction page.
-
           name="categoryId"
           control={form.control}
           render={({ field }) => (
