@@ -18,6 +18,7 @@ const badgeVariants = cva(
         outline:
           "text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground",
         primary: "border-transparent bg-blue-500/10 text-blue-500",
+        // TODO: Change color scheme to a more greenish tone, empashizing on how good it is to keep money.
       },
     },
     defaultVariants: {
