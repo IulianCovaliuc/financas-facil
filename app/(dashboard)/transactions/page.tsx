@@ -11,6 +11,7 @@ import { useGetTransactions } from "@/features/transactions/api/use-get-transact
 import { Skeleton } from "@/components/ui/skeleton";
 import { useBulkDeleteTransactions } from "@/features/transactions/api/use-bulk-delete-transactions";
 import { useState } from "react";
+import { UploadButton } from "./upload-button";
 
 enum VARIANTS {
   LIST = "LIST",
@@ -66,11 +67,13 @@ const TransactionsPage = () => {
           <CardTitle className="text-xl line-clamp-1">
             Transaction History
           </CardTitle>
-          <Button onClick={newTransaction.onOpen} size="sm">
-            <Plus className="size-4 mr-2" />
-            Add New
-          </Button>
-          <UploadButton onUpload={() => {}} />
+          <div className="flex items-center gap-x-2">
+            <Button onClick={newTransaction.onOpen} size="sm">
+              <Plus className="size-4 mr-2" />
+              Add New
+            </Button>
+            <UploadButton onUpload={() => {}} />
+          </div>
         </CardHeader>
         <CardContent>
           <DataTable
