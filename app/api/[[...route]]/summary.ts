@@ -126,7 +126,7 @@ const app = new Hono().get(
         value: otherSum,
       });
     }
-
+    // TODO: Something is making this not work. api/summary is giving internal server error. Need to Debug
     const activeDays = await db
       .select({
         date: transactions.date,
