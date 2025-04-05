@@ -61,4 +61,5 @@ export function fillMissingDays(
       };
     }
   });
+  return transactionsByDay;
 }
