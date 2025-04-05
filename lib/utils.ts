@@ -73,6 +73,16 @@ export function formatDateRange(period?: Period) {
   const defaultFrom = subDays(defaultTo, 30);
 
   if (!period?.from) {
-    return `${format}`;
+    return `${format(defaultFrom, "LLL dd")} - ${format(
+      defaultTo,
+      "LLL dd, y"
+    )}`;
   }
+  if (period.to) {
+    return `${format(period.from, "LLL dd")} - ${format(
+      period.to,
+      "LLL dd, y"
+    )}`;
+  }
+  return format(period.from, "LLL dd, y");
 }
