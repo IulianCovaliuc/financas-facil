@@ -1,9 +1,17 @@
 import { IconType } from "react-icons/lib";
 import { VariantProps, cva } from "class-variance-authority";
 
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "./ui/card";
+
 import { cn } from "@/lib/utils";
 
-const iconVariant = cva("size-6", {
+const iconVariant = cva(" shrink-0 size-6", {
   variants: {
     variant: {
       default: "bg-blue-500",
@@ -42,6 +50,26 @@ interface DataCardProps extends BoxVariants, IconVariants {
   percentageChange?: number;
 }
 
-export const DataCard = ({ icon: Icon }: DataCardProps) => {
-  return <div>Hello</div>;
+export const DataCard = ({
+  icon: Icon,
+  title,
+  value = 0,
+  variant,
+  dateRange,
+  percentageChange = 0,
+}: DataCardProps) => {
+  return (
+    <Card>
+      <CardHeader className="flex flex-row items-center justify-between gap-x-4">
+        <div className="space-y-2">
+          <CardTitle className="text-2xl line-clamp-1">{title}</CardTitle>
+          <CardDescription className="line-clamp1">{dateRange}</CardDescription>
+        </div>
+        <div className={cn(boxVariant({ variant }))}>
+          <Icon className={cn(iconVariant({ variant }))} />
+        </div>
+      </CardHeader>
+      Hello
+    </Card>
+  );
 };
