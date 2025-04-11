@@ -8,6 +8,8 @@ import {
   CartesianGrid,
 } from "recharts";
 
+import { CustomTooltip } from "./custom-tooltip";
+
 type Props = {
   data: {
     date: string;
@@ -39,6 +41,7 @@ export const AreaVariant = ({ data }: Props) => {
           style={{ fontSize: "12px" }}
           tickMargin={16}
         />
+        <Tooltip content={<CustomTooltip />} />
         <Area
           type="monotone"
           dataKey="income"
