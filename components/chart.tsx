@@ -2,6 +2,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { FileSearch } from "lucide-react";
 import { AreaVariant } from "./area-variant";
 import { BarVariant } from "./bar-variant";
+import { LineVariant } from "./line-variant";
+import { useState } from "react";
 
 type Props = {
   data?: {
@@ -12,6 +14,13 @@ type Props = {
 };
 
 export const Chart = ({ data = [] }: Props) => {
+  const [chartType, setChartType] = useState("area");
+
+  const onTypeChange = (type: string) => {
+    // TODO: Add Paywall
+    setChartType(type);
+  };
+
   return (
     <Card className="border-none drop-shadow-sm">
       <CardHeader className="flex space-y-2 lg:space-y-0 lg:flex-row lg:items-center justify-between">
@@ -28,7 +37,8 @@ export const Chart = ({ data = [] }: Props) => {
           </div>
         ) : (
           //<AreaVariant data={data} />
-          <BarVariant data={data} />
+          //<BarVariant data={data} />
+          <LineVariant data={data} />
         )}
       </CardContent>
     </Card>
