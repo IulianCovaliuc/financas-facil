@@ -12,6 +12,8 @@ import {
   SelectItem,
 } from "@/components/ui/select";
 import { PieVariant } from "./pie-variant";
+import { RadarVariant } from "./radar-variant";
+import { RadialVariant } from "./radial-variant";
 
 type Props = {
   data?: {
