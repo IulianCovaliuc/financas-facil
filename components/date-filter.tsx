@@ -89,7 +89,9 @@ export const DateFilter = () => {
             <Button
               onClick={onReset}
               disabled={!date?.from || !date?.to}
-              className="w-full"
+              size="sm"
+              className="h-9 rounded-md px-3 font-normal bg-white/10 hover:bg-amber-600/80 hover:text-white
+              focus:ring-offset-0 focus:ring-transparent outline-none focus:bg-white/30 transition"
               variant="outline"
             >
               Reset
@@ -99,7 +101,9 @@ export const DateFilter = () => {
             <Button
               onClick={() => pushToUrl(date)}
               disabled={!date?.from || !date?.to}
-              className="w-full"
+              size="sm"
+              className="h-9 rounded-md px-3 font-normal bg-white/10 hover:bg-amber-600/80 hover:text-white
+              focus:ring-offset-0 focus:ring-transparent outline-none focus:bg-white/30 transition"
               variant="outline"
             >
               Apply
