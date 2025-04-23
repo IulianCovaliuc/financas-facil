@@ -6,88 +6,87 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { insertCategorySchema } from "@/db/schema";
-import{
-    Form,
-    FormControl,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
-
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
 } from "@/components/ui/form";
 
 const formSchema = insertCategorySchema.pick({
-    name: true,
+  name: true,
 });
 
 type FormValues = z.input<typeof formSchema>;
 
 type Props = {
-    id?: string;
-    defaultValues?: FormValues;
-    onSubmit: (values: FormValues) => void;
-    onDelete?: () => void;
-    disabled?: boolean;
+  id?: string;
+  defaultValues?: FormValues;
+  onSubmit: (values: FormValues) => void;
+  onDelete?: () => void;
+  disabled?: boolean;
 };
 
 export const CategoryForm = ({
-    id,
-    defaultValues,
-    onSubmit,
-    onDelete,
-    disabled,
-
+  id,
+  defaultValues,
+  onSubmit,
+  onDelete,
+  disabled,
 }: Props) => {
+  const form = useForm<FormValues>({
+    resolver: zodResolver(formSchema),
+    defaultValues: defaultValues,
+  });
 
-    const form = useForm<FormValues>({
-        resolver: zodResolver(formSchema),
-        defaultValues: defaultValues,
-    });
+  const handleSubmit = (values: FormValues) => {
+    onSubmit(values);
+  };
 
-    const handleSubmit = (values: FormValues) => {
-        onSubmit(values); 
-    };
+  const handleDelete = () => {
+    onDelete?.();
+  };
 
-    const handleDelete = () => {
-        onDelete?.();
-    };
-
-    return (
-        <Form {...form}>
-            <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4 pt-4">
-                <FormField 
-                    name="name"
-                    control={form.control}
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>
-                                Name
-                            </FormLabel>
-                            <FormControl>
-                                <Input
-                                    disabled={disabled}
-                                    placeholder="e.g. Cash, Bank, Credit Card"
-                                    {...field}
-                                    />
-                            </FormControl>
-                        </FormItem>
-                    )}
+  return (
+    <Form {...form}>
+      <form
+        onSubmit={form.handleSubmit(handleSubmit)}
+        className="space-y-4 pt-4"
+      >
+        <FormField
+          name="name"
+          control={form.control}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Name</FormLabel>
+              <FormControl>
+                <Input
+                  disabled={disabled}
+                  placeholder="e.g. Cash, Bank, Credit Card"
+                  {...field}
                 />
-                <Button className="w-full" disabled={disabled}>
-                    {id ? "Save Changes" : "Create category"}
-                </Button>
-                {!!id && <Button
-                    type="button"
-                    disabled={disabled}
-                    onClick={handleDelete}
-                    className="w-full"
-                    variant="outline"
-                >
-                    <Trash className="size-4 mr-2"/>
-                    Delete Category 
-                </Button>
-                }
-            </form>
-        </Form>
-    )
+              </FormControl>
+            </FormItem>
+          )}
+        />
+        <Button className="w-full" disabled={disabled}>
+          {id ? "Save Changes" : "Create category"}
+        </Button>
+        {!!id && (
+          <Button
+            type="button"
+            disabled={disabled}
+            onClick={handleDelete}
+            className="w-full"
+            variant="outline"
+          >
+            <Trash className="size-4 mr-2" />
+            Delete Category
+          </Button>
+        )}
+      </form>
+    </Form>
+  );
 };
