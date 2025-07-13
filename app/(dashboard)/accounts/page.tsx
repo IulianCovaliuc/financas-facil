@@ -9,6 +9,7 @@ import { DataTable } from "@/components/data-table";
 import { useGetAccounts } from "@/features/accounts/api/use-get-accounts";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useBulkDeleteAccounts } from "@/features/accounts/api/use-bulk-delete";
+import { useMutation } from "@tanstack/react-query";
 
 const AccountsPage = () => {
   const newAccount = useNewAccount();
@@ -17,6 +18,16 @@ const AccountsPage = () => {
   const accounts = accountsQuery.data || [];
 
   const isDisabled = accountsQuery.isLoading || deleteAccounts.isPending;
+
+  const createConnectSession = useMutation({
+    mutationFn: async () => {
+      const response = await fetch("/api/saltedge/create-connect-session", {
+        method: "POST",
+      });
+      const { connect_url } = await response.json();
+      window.location.href = connect_url;
+    },
+  });
 
   if (accountsQuery.isLoading) {
     return (
@@ -43,6 +54,13 @@ const AccountsPage = () => {
           <Button onClick={newAccount.onOpen} size="sm">
             <Plus className="size-4 mr-2" />
             Add New
+          </Button>
+          <Button
+            onClick={() => createConnectSession.mutate()}
+            size="sm"
+            className="ml-2"
+          >
+            Connect Bank
           </Button>
         </CardHeader>
         <CardContent>
